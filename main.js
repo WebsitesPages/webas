@@ -275,3 +275,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 
+  let hrs = document.querySelectorAll('hr');
+  let blue = document.querySelectorAll(".blue");
+
+
+  const sectionOneOptions = {
+      root: null,
+      rootMargin: '20% 0% -20% 0%',
+      threshold: 0
+  };
+  
+  hrs.forEach(hr => {
+      let observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              console.log(`Intersection Ratio: ${entry.intersectionRatio}`);
+              if (entry.isIntersecting) {
+                  entry.target.style.opacity = "1";
+                  entry.target.style.width = "5rem";
+              }
+          });
+      }, sectionOneOptions);
+  
+      observer.observe(hr);
+  });
+
+
+  
+  blue.forEach(blue =>{
+    let observer = new IntersectionObserver((entries) =>{
+      entries.forEach(entry => {
+        console.log(`Intersection Ratio: ${entry.intersectionRatio}`);
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = "1";
+      }
+  });
+}, sectionOneOptions);
+
+observer.observe(blue);
+});
+
+$(document).ready(function(){
+  var randomNum = Math.floor(Math.random() * (40 - 20 + 1)) + 20;
+  $('.anfragenanzahl').html(randomNum + ' Anfragen sind heute eingegangen');
+});
+  
+  

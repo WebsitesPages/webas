@@ -150,17 +150,29 @@ header {
     width: 100%;
 }
 
+.main-nav li:last-child a::after {
+  display: none; /* Diese Regel verhindert, dass der Strich unter dem letzten Element angezeigt wird */
+}
+
+.main-nav li:last-child a:hover::after {
+  width: 0;
+}
+
 .main-nav li:last-child a {
-    background-color: var(--royale-blue); /* oder eine andere Hintergrundfarbe Ihrer Wahl */
-    color: #fff;
-    padding: 8px 16px; /* Sie können den Abstand anpassen, um die Größe des Buttons zu ändern */
-    border-radius: 4px; /* Sie können den Radius anpassen, um die Ecken des Buttons abzurunden */
-    transition: background-color 0.3s;
-  }
-  .main-nav li:last-child a:hover {
-    background-color: white;
-    color: black; /* oder eine andere Farbe für den Hover-Effekt Ihrer Wahl */
-  }
+  background-color: var(--royale-blue); 
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s ease; 
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25); 
+  transform: scale(1);
+}
+
+.main-nav li:last-child a:hover {
+  background-color: var(--royale-blue);
+  color: white;
+  box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.25); 
+}
 
 /**/
 
@@ -468,14 +480,16 @@ display: none;
     padding: 0 1rem;
 } 
 
-.centered-text-opacity1 hr {
-    width: 5rem;
+hr {
+    width: 0;
     height: 5px;
     background-color: #4169e1;
     border: none;
     margin: 2rem auto;
+    opacity: 0;
+    transform-origin: center;
+    transition: width 0.5s, opacity 0.5s;
 }
-
 .centered-text-opacity1 p{
     text-align: center;
     font-size: calc(var(--webas-font-size) / 2.5);
@@ -524,6 +538,7 @@ display: none;
     max-width: 70%;
     margin-top: 5rem;
     margin-bottom: 5rem;
+
   }
   
   .question {
@@ -614,13 +629,14 @@ display: none;
   
   .question-step {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateX(20px);
     transition: all 0.5s ease-in-out;
+    
   }
   
   .question-step.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
   
   #contact-form {
@@ -840,6 +856,8 @@ display: none;
 
   .blue.material-symbols-outlined{
     color: var(--royale-blue);
+    opacity: 0;
+    transition: opacity 2s;
   }
 
   .containerfeature {
@@ -924,13 +942,7 @@ display: none;
     padding: 0 1rem;
 } 
 
-.centered-text-opacity1-width100 hr {
-    width: 5rem;
-    height: 5px;
-    background-color: #4169e1;
-    border: none;
-    margin: 2rem auto;
-}
+
 
 .centered-text-opacity1-width100 p{
     text-align: center;

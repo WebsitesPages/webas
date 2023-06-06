@@ -150,17 +150,29 @@ header {
     width: 100%;
 }
 
+.main-nav li:last-child a::after {
+    display: none; /* Diese Regel verhindert, dass der Strich unter dem letzten Element angezeigt wird */
+}
+
+.main-nav li:last-child a:hover::after {
+    width: 0;
+}
+
 .main-nav li:last-child a {
-    background-color: var(--royale-blue); /* oder eine andere Hintergrundfarbe Ihrer Wahl */
+    background-color: var(--royale-blue); 
     color: #fff;
-    padding: 8px 16px; /* Sie können den Abstand anpassen, um die Größe des Buttons zu ändern */
-    border-radius: 4px; /* Sie können den Radius anpassen, um die Ecken des Buttons abzurunden */
-    transition: background-color 0.3s;
-  }
-  .main-nav li:last-child a:hover {
-    background-color: white;
-    color: black; /* oder eine andere Farbe für den Hover-Effekt Ihrer Wahl */
-  }
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease; 
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25); 
+    transform: scale(1);
+}
+
+.main-nav li:last-child a:hover {
+    background-color: var(--royale-blue);
+    color: white;
+    box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.25); 
+}
 
 /**/
 
@@ -255,6 +267,13 @@ header {
         color: #4169e1;
         background-color: white;
       }
+      .main-nav li:last-child a::after {
+        display: block;
+    }
+      .main-nav li:last-child a:hover::after {
+        width: 100%;
+    }
+
 }
   
 .material-symbols-outlined {

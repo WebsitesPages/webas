@@ -189,3 +189,17 @@ function updateHeaderOnScroll() {
 });
 
 
+let hr = document.querySelector('hr');
+
+let observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.33) {
+            hr.style.opacity = "1";
+        } else {
+            hr.style.opacity = "0";
+        }
+    });
+}, { threshold: [0, 0.33] });
+
+observer.observe(hr);
+

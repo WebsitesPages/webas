@@ -316,7 +316,7 @@ observer.observe(blue);
 
 $(document).ready(function(){
   var randomNum = Math.floor(Math.random() * (40 - 20 + 1)) + 20;
-  $('.anfragenanzahl').html(randomNum + ' Anfragen sind heute eingegangen');
+  $('.anfragenanzahl').html(randomNum + ' inquiries have been received today.');
 });
   
   

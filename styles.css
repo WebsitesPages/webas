@@ -255,18 +255,20 @@ header {
       text-transform: uppercase;
       font-size: calc(var(--kopf-font-size) * 2);
     }
-    .main-nav li:last-child a{
+    /* .main-nav li:last-child a{
         all: unset;
         font-family: 'Montserrat', Arial, sans-serif;
         font-size: calc(var(--kopf-font-size) * 2);
         text-transform: uppercase;
         color: black;
         padding-bottom: 3px;
-    }
-    .main-nav li:last-child a:hover {
-        color: #4169e1;
-        background-color: white;
-      }
+    } */
+
+     .main-nav li:last-child a:hover {
+      background-color: var(--royale-blue);
+      color: white;
+      box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.25); 
+      } 
 }
   
 .material-symbols-outlined {
@@ -980,3 +982,10 @@ hr {
     }
 }
 
+.obser {
+  opacity: 0;
+  transition: opacity 2s; /* Einblendungsdauer 1 Sekunde */
+}
+.visible {
+  opacity: 1 !important;
+}

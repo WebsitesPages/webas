@@ -316,7 +316,33 @@ observer.observe(blue);
 
 $(document).ready(function(){
   var randomNum = Math.floor(Math.random() * (40 - 20 + 1)) + 20;
-  $('.anfragenanzahl').html(randomNum + ' inquiries have been received today.');
+  $('.anfragenanzahl').html(randomNum + ' Anfragen sind heute eingegangen');
 });
   
-  
+  // Die Optionen für den Intersection Observer
+let options = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.50
+};
+
+// Der Callback für den Intersection Observer
+let callback = (entries, observer) => {
+  entries.forEach(entry => {
+      // Wenn das Element zu mindestens 20% sichtbar ist
+      if (entry.isIntersecting) {
+          // Füge die Klasse "visible" hinzu
+          entry.target.classList.add('visible');
+          // Das Element muss nicht weiter beobachtet werden, also entferne es vom Observer
+          observer.unobserve(entry.target);
+      }
+  });
+};
+
+// Erstelle den Intersection Observer
+let observer = new IntersectionObserver(callback, options);
+
+// Beobachte alle Elemente mit der Klasse "obser"
+document.querySelectorAll('.obser').forEach(elem => {
+  observer.observe(elem);
+});

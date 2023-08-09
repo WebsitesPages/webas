@@ -59,7 +59,7 @@ const menuIcon = document.querySelector('.menu-icon');
     dot.addEventListener('click', () => changeText(index));
   });
 
-  timer = setInterval(slideTexts, 4000); 
+  timer = setInterval(slideTexts, 6000); 
 
 
 
@@ -150,59 +150,9 @@ function updateHeaderOnScroll() {
 });
 
 
-// Call updateHeaderOnScroll when the user scrolls
 window.addEventListener("scroll", updateHeaderOnScroll);
 
-  
-// document.addEventListener('DOMContentLoaded', () => {
-//     const questions = document.querySelectorAll('.question-step');
-//     let currentQuestion = 0;
-  
-//     questions[currentQuestion].classList.add('active');
-//     questions[currentQuestion].style.display = 'block';
-  
-//     questions.forEach((question, index) => {
-//       question.querySelectorAll('.option').forEach(option => {
-//         option.addEventListener('click', () => {
-//           question.classList.remove('active');
-//           setTimeout(() => {
-//             question.style.display = 'none';
-//             currentQuestion++;
-  
-//             if (currentQuestion < questions.length) {
-//               questions[currentQuestion].style.display = 'block';
-//               setTimeout(() => {
-//                 questions[currentQuestion].classList.add('active');
-//               }, 10);
-  
-//               if (questions[currentQuestion].classList.contains('search-step')) {
-//                 setTimeout(() => {
-//                   const loader = questions[currentQuestion].querySelector('.loader');
-//                   const checkmark = questions[currentQuestion].querySelector('.checkmark');
-  
-//                   loader.style.display = 'none';
-//                   checkmark.style.display = 'block';
-  
-//                   setTimeout(() => {
-//                     questions[currentQuestion].classList.remove('active');
-//                     questions[currentQuestion].style.display = 'none';
-  
-//                     const contactForm = document.querySelector('#contact-form');
-//                     contactForm.style.display = 'block';
-//                     setTimeout(() => {
-//                       contactForm.classList.add('active');
-//                     }, 10);
-//                   }, 3000); // 3 Sekunden für Häkchen-Anzeige
-//                 }, 3000); // 3 Sekunden für Loader-Animation
-//               }
-//             } else {
-//               document.querySelector('#contact-form').style.display = 'block';
-//             }
-//           }, 500);
-//         });
-//       });
-//     });
-//   });
+
   
   
   

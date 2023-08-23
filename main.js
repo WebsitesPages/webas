@@ -337,5 +337,47 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Variablen für die Optionen
+let bereitsWebseite, unterseitenAnzahl, texterstellung, visuelleEffekte, fertigstellungsDatum;
 
+// Event-Listener für die Optionen
+document.querySelectorAll('.option').forEach(button => {
+    button.addEventListener('click', function() {
+        let parentQuestion = this.closest('.question-step');
+        if (parentQuestion.querySelector('.kontakth2').textContent.includes('Haben Sie bereits eine Webseite?')) {
+            bereitsWebseite = this.textContent;
+        } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Wieviele Unterseiten soll Ihre Seite haben?')) {
+            unterseitenAnzahl = this.textContent;
+        } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Benötigen Sie auch Unterstützung bei der Erstellung von Texten?')) {
+            texterstellung = this.textContent;
+        } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Sind spezielle visuelle Effekte oder Animationen gewünscht?')) {
+            visuelleEffekte = this.textContent;
+        } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Wann soll Ihre Webseite fertig sein?')) {
+            fertigstellungsDatum = this.textContent;
+        }
+    });
+});
+
+// Event-Listener für das Kontaktformular
+document.getElementById('contact-form').querySelector('form').addEventListener('submit', function(event) {
+    // // Verhindert das tatsächliche Absenden des Formulars
+    // event.preventDefault();
+
+    // Kontaktformular Daten extrahieren
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let telefon = document.getElementById("phone").value;
+    let nachricht = document.getElementById("message").value;
+
+    // Daten ausgeben
+    console.log('Bereits Webseite:', bereitsWebseite);
+    console.log('Unterseiten Anzahl:', unterseitenAnzahl);
+    console.log('Texterstellung:', texterstellung);
+    console.log('Visuelle Effekte:', visuelleEffekte);
+    console.log('Fertigstellungsdatum:', fertigstellungsDatum);
+    console.log('Name:', name);
+    console.log('Email:', email);
+    console.log('Telefon:', telefon);
+    console.log('Nachricht:', nachricht);
+});
 

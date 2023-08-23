@@ -32,34 +32,38 @@ const menuIcon = document.querySelector('.menu-icon');
 
 
 //Welchselnder Text am Anfang
-  const texts = document.querySelectorAll('.centered-text');
-  const dots = document.querySelectorAll('.pagination-dot');
-  let currentIndex = 0;
-  let timer;
+const slantedContainers = document.querySelectorAll('.slanted-container');
 
-  function slideTexts() {
-    texts[currentIndex].classList.remove('active');
-    dots[currentIndex].classList.remove('active');
-    currentIndex = (currentIndex + 1) % texts.length;
-    texts[currentIndex].classList.add('active');
-    dots[currentIndex].classList.add('active');
-  }
+slantedContainers.forEach(container => {
+    const texts = container.querySelectorAll('.centered-text');
+    const dots = container.querySelectorAll('.pagination-dot');
+    let currentIndex = 0;
+    let timer;
 
-  function changeText(index) {
-    clearInterval(timer); 
-    texts[currentIndex].classList.remove('active');
-    dots[currentIndex].classList.remove('active');
-    currentIndex = index;
-    texts[currentIndex].classList.add('active');
-    dots[currentIndex].classList.add('active');
-    timer = setInterval(slideTexts, 7000); 
-  }
+    function slideTexts() {
+        texts[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % texts.length;
+        texts[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+    }
 
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => changeText(index));
-  });
+    function changeText(index) {
+        clearInterval(timer); 
+        texts[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+        currentIndex = index;
+        texts[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+        timer = setInterval(slideTexts, 7000); 
+    }
 
-  timer = setInterval(slideTexts, 6000); 
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => changeText(index));
+    });
+
+    timer = setInterval(slideTexts, 6000); 
+});
 
 
 
@@ -296,3 +300,42 @@ let observer = new IntersectionObserver(callback, options);
 document.querySelectorAll('.obser').forEach(elem => {
   observer.observe(elem);
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ... Ihr vorheriger Code ...
+
+  const popupOverlay = document.querySelector('.popup-overlay');
+  const popupCloseBtn = document.querySelector('.popup-close-btn');
+  const popupBtn = document.querySelector('.popup-btn');
+
+  setTimeout(() => {
+      popupOverlay.style.display = 'block'; // Zeigt das Popup an
+      setTimeout(() => {
+          popupOverlay.classList.add('active'); // Fügt die Animation hinzu
+      }, 50);
+      document.body.style.overflow = 'hidden'; // Verhindert das Scrollen
+  }, 25000);
+
+  popupCloseBtn.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+      setTimeout(() => {
+          popupOverlay.style.display = 'none'; // Versteckt das Popup
+      }, 300);
+      document.body.style.overflow = 'auto'; // Erlaubt das Scrollen wieder
+  });
+
+  // Weiterleitung zum #anfragen Abschnitt, wenn der Button geklickt wird
+  popupBtn.addEventListener('click', () => {
+      window.location.href = "#anfragen";
+      popupOverlay.classList.remove('active');
+      setTimeout(() => {
+          popupOverlay.style.display = 'none'; // Versteckt das Popup
+      }, 300);
+      document.body.style.overflow = 'auto'; // Erlaubt das Scrollen wieder
+  });
+});
+
+
+
+

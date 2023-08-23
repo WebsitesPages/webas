@@ -43,37 +43,39 @@ const menuIcon = document.querySelector('.menu-icon');
     function showAdjective() {
       adjectives[adjIndex].classList.add('active');
   
+      let displayDuration = adjIndex === 0 ? 1500 : 250;  // Wenn es das erste Adjektiv ist, zeige es für 1s, sonst für 0,5s
+  
       setTimeout(() => {
           adjectives[adjIndex].classList.add('exit');
           adjectives[adjIndex].classList.remove('active');
           adjIndex++;
   
           if (adjIndex < adjectives.length) {
-              setTimeout(showAdjective, 100);  // Reduzierte Zeit für stärkere Überlappung
+              setTimeout(showAdjective, 50);  // Reduzierte Zeit für stärkere Überlappung
           } else {
               setTimeout(() => {
                   adjContainer.style.display = 'none';
-              }, 1000);
+              }, 500);  // Halbierte Zeit für das Ausblenden des adjContainer
   
               setTimeout(() => {
                   textContainer.style.transition = 'opacity 1s, transform 1s';
                   textContainer.style.opacity = '1';
                   textContainer.classList.remove('text-container-moved-down');
-              }, 1000);  // Verzögern Sie die Animation des textContainer
+              }, 1000);  // Halbierte Zeit für die Animation des textContainer
   
               setTimeout(() => {
                   header.style.transition = 'opacity 1s';
                   header.style.opacity = '1';
-              }, 2000); // Fügen Sie den Header nach den anderen Animationen hinzu
+              }, 1500); // Fügen Sie den Header nach den anderen Animationen hinzu
           }
-      }, 1000);
+      }, displayDuration);
   }
   
     showAdjective();
 }
 
-  
-  document.addEventListener('DOMContentLoaded', fadeInElements);
+document.addEventListener('DOMContentLoaded', fadeInElements);
+
   
   
 
@@ -133,6 +135,10 @@ const menuIcon = document.querySelector('.menu-icon');
           }
       });
   });
+  
+  
+  window.addEventListener("scroll", updateHeaderOnScroll);
+  
 
 
 let hr = document.querySelector('hr');

@@ -81,19 +81,19 @@ slantedContainers.forEach(container => {
       textContainer.style.transition = 'opacity 1s, transform 1s';
       textContainer.style.opacity = '1';
       textContainer.classList.remove('text-container-moved-down');
-    }, 500);
+    }, 300);
   
     setTimeout(() => {
       header.style.transition = 'opacity 1s';
       header.style.opacity = '1';
-    }, 1500);
+    }, 800);
   
     setTimeout(() => {
       centeredTextContainer.style.transition = 'opacity 1s';
       centeredTextContainer.style.opacity = '1';
       pagination.style.transition = 'opacity 1s';
       pagination.style.opacity = '1';
-    }, 2500);
+    }, 1500);
   }
 
   document.addEventListener('DOMContentLoaded', fadeInElements);

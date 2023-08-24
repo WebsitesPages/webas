@@ -43,7 +43,7 @@ const menuIcon = document.querySelector('.menu-icon');
     function showAdjective() {
       adjectives[adjIndex].classList.add('active');
   
-      let displayDuration = adjIndex === 0 ? 1500 : 250;  // Wenn es das erste Adjektiv ist, zeige es für 1s, sonst für 0,5s
+      let displayDuration = adjIndex === 0 ? 1500 : 180;  // Wenn es das erste Adjektiv ist, zeige es für 1s, sonst für 0,5s
   
       setTimeout(() => {
           adjectives[adjIndex].classList.add('exit');
@@ -61,12 +61,12 @@ const menuIcon = document.querySelector('.menu-icon');
                   textContainer.style.transition = 'opacity 1s, transform 1s';
                   textContainer.style.opacity = '1';
                   textContainer.classList.remove('text-container-moved-down');
-              }, 1000);  // Halbierte Zeit für die Animation des textContainer
+              }, 500);  // Halbierte Zeit für die Animation des textContainer
   
               setTimeout(() => {
                   header.style.transition = 'opacity 1s';
                   header.style.opacity = '1';
-              }, 1500); // Fügen Sie den Header nach den anderen Animationen hinzu
+              }, 1000); // Fügen Sie den Header nach den anderen Animationen hinzu
           }
       }, displayDuration);
   }

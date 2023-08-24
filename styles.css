@@ -1314,3 +1314,25 @@ footer nav ul li a:hover {
   text-justify: inter-word;
   text-align-last: center;
 }
+
+/* Standardmäßig wird das Logo ausgeblendet */
+.logo {
+  display: none;
+}
+
+/* Wenn der Bildschirm kleiner als 768px ist, zeigen Sie das Logo an */
+@media (max-width: 768px) {
+  .logo {
+      display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 50px; /* oder die gewünschte Größe */
+      height: 50px;
+  }
+
+  .logo img {
+      width: 100%;
+      height: auto;
+  }
+}

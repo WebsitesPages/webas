@@ -380,4 +380,9 @@ document.getElementById('contact-form').querySelector('form').addEventListener('
     console.log('Telefon:', telefon);
     console.log('Nachricht:', nachricht);
 });
+document.getElementById('bereitsWebseite').value = bereitsWebseite;
+document.getElementById('unterseitenAnzahl').value = unterseitenAnzahl;
+document.getElementById('texterstellung').value = texterstellung;
+document.getElementById('visuelleEffekte').value = visuelleEffekte;
+document.getElementById('fertigstellungsDatum').value = fertigstellungsDatum;
 

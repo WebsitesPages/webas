@@ -99,7 +99,7 @@
         <div id="anfragen" ></div>
        
         <div id="form-container" >
-        <form action="submit.php" method="post" class="appointment-form"></form>
+        <form action="submit.php" method="post" class="appointment-form">
         <div class="question-step active">
           <h2 class="kontakth2">Haben Sie bereits eine Webseite?</h2>
           <div class="pagination-dots">
@@ -189,14 +189,18 @@
 
         <div id="contact-form" style="display: none;">
             <h2 class="kontakth2">Jetzt kostenlos anfragen!</h2>
-            <form>
              <input type="text" id="name" name="name" placeholder="Name" required>
               <input type="email" id="email" name="email" placeholder="Email" required>
              <input type="tel" id="phone" name="phone" placeholder="Telefonnummer">
              <textarea id="message" name="message" rows="4" placeholder="Nachricht" required></textarea>
                 <button type="submit">Anfrage senden</button>
+              </div>
+              <input type="hidden" id="bereitsWebseite" name="bereitsWebseite">
+              <input type="hidden" id="unterseitenAnzahl" name="unterseitenAnzahl">
+              <input type="hidden" id="texterstellung" name="texterstellung">
+              <input type="hidden" id="visuelleEffekte" name="visuelleEffekte">
+              <input type="hidden" id="fertigstellungsDatum" name="fertigstellungsDatum">
             </form>
-        </div>
       </div>
 
       <div class="centered-text-opacity1 obser">

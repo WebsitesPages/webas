@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Daten in der Datenbank speichern
-    $sql = "INSERT INTO Webas (Name, Email, Telefonnummer, BereitsWebseite, UnterseitenAnzahl, Texterstellung, VisuelleEffekte, FertigstellungsDatum, Message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO `Name Webas` (Name, Email, Telefonnummer, BereitsWebseite, UnterseitenAnzahl, Texterstellung, VisuelleEffekte, FertigstellungsDatum, Message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {

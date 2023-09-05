@@ -30,64 +30,68 @@ const menuIcon = document.querySelector('.menu-icon');
   });
 
 
-
-
   function fadeInElements() {
     const textContainer = document.querySelector('.text-container');
     const adjContainer = document.querySelector('.adjectives-container');
     const adjectives = Array.from(adjContainer.children);
     const header = document.querySelector('header');
-    const scrollDownIndicator = document.querySelector('.scroll-down-indicator'); // Definieren Sie den Scroll-Indikator hier
+    const scrollDownIndicator = document.querySelector('.scroll-down-indicator'); // Ersetzen Sie dies durch die tatsächliche Klasse Ihres Scroll-Indikators
   
-      // Setzen Sie die Anfangsdisplay-Eigenschaft auf 'none'
-      scrollDownIndicator.style.display = 'none';
-
     let adjIndex = 0;
+    scrollDownIndicator.style.display = 'none';
+
   
     function showAdjective() {
-      adjectives[adjIndex].classList.add('active');
-  
-      let displayDuration = adjIndex === 0 ? 1500 : 180;  // Wenn es das erste Adjektiv ist, zeige es für 1s, sonst für 0,5s
+      if (adjIndex > 0) {
+        adjectives[adjIndex - 1].classList.remove('active');
+        adjectives[adjIndex - 1].classList.add('exit');
+      }
   
       setTimeout(() => {
-          adjectives[adjIndex].classList.add('exit');
-          adjectives[adjIndex].classList.remove('active');
+        if (adjIndex < adjectives.length) {
+          adjectives[adjIndex].classList.add('active');
+          let displayDuration = adjIndex === 0 ? 1500 : 700;
+          setTimeout(showAdjective, displayDuration);
           adjIndex++;
+        } else {
+          setTimeout(() => {
+            adjContainer.style.display = 'none';
+          }, 500);
   
-          if (adjIndex < adjectives.length) {
-              setTimeout(showAdjective, 50);  // Reduzierte Zeit für stärkere Überlappung
-          } else {
-              setTimeout(() => {
-                  adjContainer.style.display = 'none';
-              }, 500);  // Halbierte Zeit für das Ausblenden des adjContainer
+          setTimeout(() => {
+            textContainer.style.transition = 'opacity 1s, transform 1s';
+            textContainer.style.opacity = '1';
+            textContainer.classList.remove('text-container-moved-down');
+          }, 500);
   
-              setTimeout(() => {
-                  textContainer.style.transition = 'opacity 1s, transform 1s';
-                  textContainer.style.opacity = '1';
-                  textContainer.classList.remove('text-container-moved-down');
-              }, 500);  // Halbierte Zeit für die Animation des textContainer
+          setTimeout(() => {
+            header.style.transition = 'opacity 1s';
+            header.style.opacity = '1';
+          }, 1000);
   
-              setTimeout(() => {
-                  header.style.transition = 'opacity 1s';
-                  header.style.opacity = '1';
-              }, 1000); // Fügen Sie den Header nach den anderen Animationen hinzu
-              setTimeout(() => {
-                scrollDownIndicator.style.display = 'block'; // Zeigen Sie den Scroll-Indikator hier an
-              }, 1500);
-          }
-      }, displayDuration);
-  }
+          setTimeout(() => {
+            scrollDownIndicator.style.display = 'block'; // Zeigen Sie den Scroll-Indikator hier an
+          }, 1500);
+        }
+      }, 50);
+    }
   
     showAdjective();
-}
-document.addEventListener('DOMContentLoaded', fadeInElements);
-  
-window.addEventListener('scroll', () => {
-  const scrollDownIndicator = document.querySelector('.scroll-down-indicator'); // Ersetzen Sie dies durch die tatsächliche Klasse Ihres Scroll-Indikators
-  if (window.scrollY > 0) {
-    scrollDownIndicator.style.display = 'none';
   }
-});
+  
+  document.addEventListener('DOMContentLoaded', fadeInElements);
+  
+  window.addEventListener('scroll', () => {
+    const scrollDownIndicator = document.querySelector('.scroll-down-indicator'); // Ersetzen Sie dies durch die tatsächliche Klasse Ihres Scroll-Indikators
+    if (window.scrollY > 0) {
+      scrollDownIndicator.style.display = 'none';
+    }
+  });
+  
+
+
+  
+  
 
 
 
@@ -209,3 +213,5 @@ $(document).ready(function(){
 var randomNum = Math.floor(Math.random() * (40 - 20 + 1)) + 20;
 $('.anfragenanzahl').html(randomNum + ' Anfragen sind heute eingegangen');
 });
+
+

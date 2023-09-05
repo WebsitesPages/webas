@@ -99,6 +99,7 @@ header {
     opacity: 1;
   }
   
+  
 #header-placeholder {
     display: none;
     height: 0;
@@ -305,7 +306,28 @@ font-size: 24px;
 cursor: pointer;
 display: none;
 }
-
+/* Standardmäßig wird das Logo ausgeblendet */
+.logo {
+    display: none;
+  }
+  
+  /* Wenn der Bildschirm kleiner als 768px ist, zeigen Sie das Logo an */
+  @media (max-width: 768px) {
+    .logo {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 50px; /* oder die gewünschte Größe */
+        height: 50px;
+    }
+  
+    .logo img {
+        width: 100%;
+        height: auto;
+    }
+  }
+  
 /**/
 
 /* Präzision / Webas */
@@ -405,9 +427,9 @@ display: none;
 .adjective {
     font-size: 2.5em;
     position: absolute;
-    top: 40%; /* Stellen Sie sicher, dass das Adjektiv vertikal zentriert ist */
-    left: 50%;
-    transform: translate(-50%, -70%); /* Startposition außerhalb des Bildschirms oben */
+    top: 40%;
+    left: 50%; /* Startposition außerhalb des Bildschirms links */
+    transform: translate(-100%, -50%);
     opacity: 0;
     transition: transform 1s, opacity 1s;
     font-family: 'Montserrat', Arial, sans-serif;
@@ -418,28 +440,21 @@ display: none;
     opacity: 1;
 }
 
-
 .adjective.exit {
-  transform: translate(-50%, 150%); /* Endposition außerhalb des Bildschirms unten */
-  opacity: 0;
+    transform: translate(50%, -50%); /* Endposition außerhalb des Bildschirms rechts */
+    opacity: 0;
 }
 
-
-
-
-  .adjective.active {
-    opacity: 1;
-  }
+  
   
   .text-container {
     opacity: 0;
     transition: opacity 1s, transform 1s;
-    transform: translateY(50px);
+    transform: translateX(50px);
   }
   
-  .text-container-moved-down {
-    transform: translateY(50px);
-    /* Entfernen Sie die Eigenschaft 'top' */
+  .text-container-moved-right {
+    transform: translateX(50px);
   }
   
 
@@ -568,42 +583,46 @@ hr {
 }
 
 .scroll-down-indicator {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  bottom: 5%;
-  transform: translateX(-50%);
-  text-align: center;
-  animation: bounce 2s infinite;
-  font-family: 'Montserrat', Arial, sans-serif; /* Schriftart gesetzt */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: bounce 2s infinite;
+    font-family: 'Montserrat', Arial, sans-serif; /* Schriftart gesetzt */
 }
 
 .scroll-down-indicator span {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
 }
 
 .scroll-down-indicator .arrow {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--royale-blue);
-  border-width: 3px 3px 0 0;
-  transform: rotate(135deg);
-  margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--royale-blue);
+    border-width: 3px 3px 0 0;
+    transform: rotate(135deg);
+    margin: 0 auto;
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-  }
-  40% {
-      transform: translateY(-10px);
-  }
-  60% {
-      transform: translateY(-5px);
-  }
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
+
+
+
+
 
 
 

@@ -39,32 +39,56 @@ slantedContainers.forEach(container => {
     const dots = container.querySelectorAll('.pagination-dot');
     let currentIndex = 0;
     let timer;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
 
     function slideTexts() {
+        clearInterval(timer);
         texts[currentIndex].classList.remove('active');
         dots[currentIndex].classList.remove('active');
         currentIndex = (currentIndex + 1) % texts.length;
         texts[currentIndex].classList.add('active');
         dots[currentIndex].classList.add('active');
+        timer = setInterval(slideTexts, 6000);
     }
 
-    function changeText(index) {
-        clearInterval(timer); 
+    function slidePreviousTexts() {
+        clearInterval(timer);
         texts[currentIndex].classList.remove('active');
         dots[currentIndex].classList.remove('active');
-        currentIndex = index;
+        currentIndex = (currentIndex - 1 + texts.length) % texts.length;
         texts[currentIndex].classList.add('active');
         dots[currentIndex].classList.add('active');
-        timer = setInterval(slideTexts, 7000); 
+        timer = setInterval(slideTexts, 6000);
     }
 
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => changeText(index));
-    });
+    container.addEventListener('touchstart', function(event) {
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
+    }, false);
 
-    timer = setInterval(slideTexts, 6000); 
+    container.addEventListener('touchend', function(event) {
+        touchEndX = event.changedTouches[0].screenX;
+        touchEndY = event.changedTouches[0].screenY;
+        const deltaX = Math.abs(touchEndX - touchStartX);
+        const deltaY = Math.abs(touchEndY - touchStartY);
+
+        if (deltaX > 50 && deltaY < 50) {
+            handleSwipe();
+        }
+    }, false);
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX) {
+            slideTexts();
+        }
+        if (touchEndX > touchStartX) {
+            slidePreviousTexts();
+        }
+    }
 });
-
 
 
   //Fade in of Webas/Websites, Header, Text
@@ -269,7 +293,7 @@ observer.observe(blue);
 });
 
 $(document).ready(function(){
-  var randomNum = Math.floor(Math.random() * (40 - 20 + 1)) + 20;
+  var randomNum = Math.floor(Math.random() * (13 - 5 + 1)) + 5;
   $('.anfragenanzahl').html(randomNum + ' Anfragen sind heute eingegangen');
 });
   
@@ -344,24 +368,25 @@ let bereitsWebseite, unterseitenAnzahl, texterstellung, visuelleEffekte, fertigs
 document.querySelectorAll('.option').forEach(button => {
     button.addEventListener('click', function() {
         let parentQuestion = this.closest('.question-step');
+        let value = this.textContent;
         if (parentQuestion.querySelector('.kontakth2').textContent.includes('Haben Sie bereits eine Webseite?')) {
-            bereitsWebseite = this.textContent;
+            document.getElementById('bereitsWebseite').value = value;
         } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Wieviele Unterseiten soll Ihre Seite haben?')) {
-            unterseitenAnzahl = this.textContent;
+            document.getElementById('unterseitenAnzahl').value = value;
         } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Benötigen Sie auch Unterstützung bei der Erstellung von Texten?')) {
-            texterstellung = this.textContent;
+            document.getElementById('texterstellung').value = value;
         } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Sind spezielle visuelle Effekte oder Animationen gewünscht?')) {
-            visuelleEffekte = this.textContent;
+            document.getElementById('visuelleEffekte').value = value;
         } else if (parentQuestion.querySelector('.kontakth2').textContent.includes('Wann soll Ihre Webseite fertig sein?')) {
-            fertigstellungsDatum = this.textContent;
+            document.getElementById('fertigstellungsDatum').value = value;
         }
     });
 });
 
+
 // Event-Listener für das Kontaktformular
-document.getElementById('contact-form').querySelector('form').addEventListener('submit', function(event) {
-    // // Verhindert das tatsächliche Absenden des Formulars
-    // event.preventDefault();
+document.getElementById('form-container').querySelector('form').addEventListener('submit', function(event) {
+
 
     // Kontaktformular Daten extrahieren
     let name = document.getElementById("name").value;
@@ -380,9 +405,11 @@ document.getElementById('contact-form').querySelector('form').addEventListener('
     console.log('Telefon:', telefon);
     console.log('Nachricht:', nachricht);
 });
+
 document.getElementById('bereitsWebseite').value = bereitsWebseite;
 document.getElementById('unterseitenAnzahl').value = unterseitenAnzahl;
 document.getElementById('texterstellung').value = texterstellung;
 document.getElementById('visuelleEffekte').value = visuelleEffekte;
 document.getElementById('fertigstellungsDatum').value = fertigstellungsDatum;
+
 
